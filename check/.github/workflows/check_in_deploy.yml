@@ -16,7 +16,9 @@ jobs:
         with:
           node-version: "${{ env.node_version }}"
       - name: Install dependencies
-        run: yarn install
+        run:|
+          yarn install
+          yarn add react-icons
       - name: Build
         run: yarn build
   Vercel-Deploy:
