@@ -16,11 +16,15 @@ jobs:
         with:
           node-version: "${{ env.node_version }}"
       - name: Install dependencies
-        run:|
+        run:
           yarn install
           yarn add react-icons
       - name: Build
         run: yarn build
+      - name: Install Prettier
+        run: yarn global add prettier
+      - name: Prettier
+        run: yarn prettier
   Vercel-Deploy:
     needs: Build
     runs-on: ubuntu-latest
