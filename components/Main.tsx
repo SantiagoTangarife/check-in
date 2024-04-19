@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction } from "react"
 import { FaPlaneDeparture } from 'react-icons/fa';
 import  TextInput  from "./Input"
 
 
 const Main = () => {
+    
     return (
     
     <div className="flex flex-col items-center h-screen justify-center ">
