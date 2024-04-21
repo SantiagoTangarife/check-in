@@ -81,3 +81,95 @@ body {
 .blue-button:hover {
   background-color: darkblue; /* Color de fondo más oscuro al pasar el cursor */
 }
+
+.card {
+  border: 2px solid #1d9bf0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8ed6ff; /* Fondo azul celeste */
+  padding: 12px; /* Ajusta el padding según sea necesario */
+  border-radius: 8px; /* Ajusta el radio de borde según sea necesario */
+  color: #000000; /* Color del texto */
+}
+
+.card-header span {
+  display: flex;
+  align-items: center;
+}
+
+.card-header h2 {
+  margin-right: 8px;
+}
+
+.card-header h2 {
+  margin-right: 8px;
+  background-color: #8ed6ff; /* Azul celeste */
+  padding: 8px 16px; /* Ajusta el padding según sea necesario */
+  border-radius: 4px; /* Ajusta el radio de borde según sea necesario */
+  color: #fff; /* Color del texto */
+}
+
+.info-container {
+  display: flex; /* Utilizar Flexbox para los elementos internos */
+  gap: 10px; /* Espacio entre los elementos */
+}
+
+
+
+
+
+.fila {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px; /* Espacio entre las columnas */
+}
+
+.columna {
+  flex: 1; /* Distribuir el espacio de forma equitativa */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linea-azul {
+  width: 100%;
+  height: 2px;
+  background-color: blue;
+}
+
+.informacion {
+  text-align: center;
+}
+
+.informacion p {
+  margin: 5px 0;
+}
+
+.info-container2 {
+  display: flex; /* Utilizar Flexbox para los elementos internos */
+  gap: 40px; /* Espacio entre los elementos */
+}
+
+
+.tabla {
+  display: table;
+  width: 60%;
+  border-spacing: 3px; /* Ajusta el espaciado entre las columnas aquí */
+}
+
+.fila2 {
+  display: table-row;
+}
+
+.fila2 span {
+  display: table-cell;
+  vertical-align: bottom;
+}
