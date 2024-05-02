@@ -1,10 +1,20 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect } from 'react';
+import QRCode from 'qrcode';
 import { FaPlaneDeparture } from 'react-icons/fa';
 import { FaBriefcase, FaSuitcase } from 'react-icons/fa';
 
-
-
 const Card = () => {
+
+    useEffect(() => {
+        const canvas = document.getElementById('canvas')
+        
+        QRCode.toCanvas(canvas, 'Arley Tangarife', function (error) {
+            if (error) console.error(error)
+            console.log('success!');
+        })
+    }, [])
 
     return (
         <div className='info-container2'>
@@ -68,7 +78,10 @@ const Card = () => {
 
 
         {/* AQUI SE CREA EL QR */}
-        <div style={{ marginTop: '100px', marginBottom: '100px' }}></div>
+        <div style={{ marginTop: '100px', marginBottom: '100px', display: 'flex', justifyContent: 'center' }}>
+            <canvas id="canvas"></canvas>
+        </div>
+
 
             <span style={{ fontWeight: 'bold' }}>SU TARIFA ES </span>
             <span style={{ fontWeight: 'bold' }}>Clasic</span>

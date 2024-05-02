@@ -1,21 +1,26 @@
 "use client";
 import React, { useState } from 'react';
 
-const TextInput = ({ placeholderValue }: { placeholderValue: string }) => {
-  const [inputValue, setInputValue] = useState('');
+interface TextInputProps {
+  placeholderValue: string;
+  required?: boolean;
+  value?: string; // Define la prop value como requerida
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Define la función onChange como requerida
+}
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+const TextInput: React.FC<TextInputProps> = ({ placeholderValue, required, value, onChange, ...rest }) => {
 
   return (
     <div className="text-input-container">
       <input
+        
         type="text"
-        value={inputValue}
-        onChange={handleInputChange}
+        value={value}
+        onChange={onChange}
+        required={required} // Utiliza la prop required para requerir la entrada
         placeholder={placeholderValue} // Utiliza la prop placeholderValue para el placeholder
         className="input-field" // Agrega una clase para los estilos del campo de entrada
+        {...rest}
       />
     </div>
   );
