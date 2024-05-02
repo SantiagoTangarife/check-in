@@ -2,6 +2,7 @@ import Image from "next/image";
 import Main from "../components/Main";
 import Checking from "@/components/DataContact/DataContact";
 import Card from "../components/Card";
+import DataContact from "@/components/DataContact/DataContact";
 
 export default function Home() {
 return (

@@ -3,18 +3,19 @@ import React, { useState } from 'react';
 
 interface TextInputProps {
   placeholderValue: string;
+  typeInput: string;
   required?: boolean;
   value?: string; // Define la prop value como requerida
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Define la función onChange como requerida
 }
 
-const TextInput: React.FC<TextInputProps> = ({ placeholderValue, required, value, onChange, ...rest }) => {
+const TextInput: React.FC<TextInputProps> = ({ placeholderValue, typeInput, required, value, onChange, ...rest }) => {
 
   return (
     <div className="text-input-container">
       <input
         
-        type="text"
+        type={typeInput}
         value={value}
         onChange={onChange}
         required={required} // Utiliza la prop required para requerir la entrada

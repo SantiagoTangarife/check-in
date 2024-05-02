@@ -4,13 +4,14 @@ import { FaPlaneDeparture } from 'react-icons/fa';
 import  TextInput  from "./Input"
 import {match} from "../data/data"
 import Checking from "@/components/DataContact/DataContact"
+import DataContact from '@/components/DataContact/DataContact';
 
 
 const Main = () => {
     const [reservationNumber, setReservationNumber] = useState('');
     const [lastName, setLastName] = useState('');
     const [error, setError] = useState('');
-    const [showChecking, setShowChecking] = useState(false);
+    const [showDataContact, setShowDataContact] = useState(false);
 
     const handleStartCheckIn = () => {
         
@@ -21,14 +22,14 @@ const Main = () => {
             
             console.log('¡Coincidencia encontrada!');
             setError('Ups! No se encontró ninguna coincidencia.');
-            setShowChecking(true); // Mostrar Checking si hay una coincidencia
+            setShowDataContact(true); // Mostrar Checking si hay una coincidencia
             
         }
     };
     
     return (
         <>
-        {!showChecking ? ( // Mostrar Main si showChecking es falso
+        {!showDataContact ? ( // Mostrar Main si showChecking es falso
           
         <form className="flex flex-col items-center h-screen justify-center ">
         <div className="emoji-circular">
@@ -42,6 +43,7 @@ const Main = () => {
         <div className="input-group justify-center" >
         <TextInput required placeholderValue="Código de reserva" 
             value={reservationNumber}
+            typeInput='text'
             onChange={(e) => setReservationNumber(e.target.value)}
     />  
 
@@ -49,6 +51,7 @@ const Main = () => {
         
         <TextInput required placeholderValue="Apellido(s)" 
         value={lastName}
+        typeInput='text'
         onChange={(e) => setLastName(e.target.value)}
     />  
         <span style={{ fontSize: '10px', fontWeight: 'bold' }}>Ingrese su(s) apellido(s), tal como aparecen registrados en la reserva. </span>
@@ -60,7 +63,7 @@ const Main = () => {
         <button type="submit" className="blue-button" onClick={handleStartCheckIn}>EMPEZAR CHECK-IN</button>
     </form>  
     ) : (
-        <Checking />
+        <DataContact />
       )}
     </>
        
