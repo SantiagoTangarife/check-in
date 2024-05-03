@@ -25,7 +25,7 @@ jobs:
       - name: Lint check
         run: yarn lint
       - name: Format check
-        run: yarn prettier
+        run: yarn prettier "**/*.ts" "**/*.tsx"
       - name: Unit & Integration tests
         run: yarn test
       - name: Smoke & Acceptance tests

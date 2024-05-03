@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"*.tsx\" \"*.ts\""
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
