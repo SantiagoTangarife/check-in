@@ -1,8 +1,12 @@
+'use client';
 import React, { useState } from 'react';
-import TextInput from '../Input';
+import TextInput from './Input';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Card from '../Card';
+import Card from './Card';
+import Main from './Main';
+import { useHistory } from 'react-router-dom';
+
 
 const DataContact = () => {
     const [nameCompleted, setNameCompleted] = useState('');
@@ -11,6 +15,7 @@ const DataContact = () => {
     const [adress, setAdress] = useState('');
     const [preexistence, setPreexistence] = useState('');
     const [showDataCard, setShowDataCard] = useState(false);
+    
 
     const handleValidation = () => {
         if (!nameCompleted || !numberContact || (preexistence === 'si' && !illness)) {
@@ -21,8 +26,13 @@ const DataContact = () => {
         }
     };
 
+    const handleCancel = () => {
+        window.location.reload();
+    };
+    
     return (
         <>
+         
         {
             !showDataCard ? (<div className="flex flex-col justify-center text-black items-center h-screen bg-white">
             <h1 className="text-3xl font-bold mb-8">Información de contacto</h1>
@@ -97,8 +107,10 @@ const DataContact = () => {
                         </div>
                     </form>
                 </div>
+               
+
                 <div className='flex flex-row justify-center gap-4'>
-                    <button type="submit" className="blue-button">CANCELAR</button>
+                    <button type="submit" className="blue-button"  onClick={handleCancel}>CANCELAR</button>
                     <button type="submit" className="blue-button" onClick={handleValidation}>GUARDAR</button>
                 </div>
                 <ToastContainer />

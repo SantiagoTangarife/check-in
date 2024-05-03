@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { FaPlaneDeparture } from 'react-icons/fa';
 import  TextInput  from "./Input"
 import {match} from "../data/data"
-import Checking from "@/components/DataContact/DataContact"
-import DataContact from '@/components/DataContact/DataContact';
+import DataContact from '@/components/DataContact';
 
 
 const Main = () => {

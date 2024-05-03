@@ -159,8 +159,8 @@ body {
 
 .tabla {
   display: table;
-  width: 60%;
-  border-spacing: 3px; /* Ajusta el espaciado entre las columnas aquí */
+  width: 80%;
+  border-spacing: 5px; /* Ajusta el espaciado entre las columnas aquí */
 }
 
 .fila2 {

@@ -4,47 +4,51 @@ import React, { useEffect } from 'react';
 import QRCode from 'qrcode';
 import { FaPlaneDeparture } from 'react-icons/fa';
 import { FaBriefcase, FaSuitcase } from 'react-icons/fa';
+import {User} from "../data/dataCard"
 
 const Card = () => {
 
     useEffect(() => {
-        const canvas = document.getElementById('canvas')
-        
-        QRCode.toCanvas(canvas, 'Arley Tangarife', function (error) {
+        const user = User[0];
+        const qrText = Object.values(user).join(' - ');
+        const size = 200;
+        const canvas = document.getElementById('canvas');
+
+        QRCode.toCanvas(canvas,  qrText, {width:size, height:size}, function (error) {
             if (error) console.error(error)
             console.log('success!');
         })
     }, [])
-
+    const user = User[0];
     return (
         <div className='info-container2'>
         <div className="card">
-            <div className="card-header h2 info-container">
-                <span>Título de la Tarjeta</span>
+            <div className="card-header h2 info-container " style={{display: 'flex', justifyContent: 'center'}}>
+                <span className="font-bold "style={{ marginRight: '20px' }}>{user.Operator}</span>
                  <span><FaPlaneDeparture size={50} /></span>
                 
             </div>
             <div className="card-body">
                 <div className="info-container2 my-4">
                 <span>Nombre del pasajero</span>
-                <span>hbg12</span>
+                <span>{user.name} {user.lastName}</span>
             </div>
 
 
-            <div className="tabla my-4">
-                <div className="fila2 text-center font-bold">
+            <div className="tabla my-4"  >
+                <div className="fila2 text-center font-bold" >
                     <span>Hora en la Sala</span>
                     <span>Grupo</span>
                     <span>Asiento</span>
                 </div>
                 <div className="fila2 text-center">
-                    <span>12:00</span>
-                    <span>C</span>
-                    <span>C4</span>
+                    <span>{user.TimeRomm}</span>
+                    <span>{user.Group}</span>
+                    <span>{user.Seat}</span>
                 </div>
             </div>
 
-            <h1 className=' text-gray-600 my-1'>Verifica la sala en las pantallas del aereopuerto</h1>
+            <h1 className=' text-gray-600 my-1 text-center'>Verifica la sala en las pantallas del aereopuerto</h1>
             
             <div className="fila">
             <div className="columna">
@@ -65,26 +69,26 @@ const Card = () => {
         </div>
         <div className=' flex justify-between'>
         <div className="informacion flex-grow-1">
-            <p style={{ fontWeight: 'bold' }}>VUP</p>
-            <p style={{ fontSize: '10px' }} >vier. 29 mar | 17:05</p>
-            <p style={{ fontSize: '10px' }}>Vaupes, terminal</p>
+            <p style={{ fontWeight: 'bold' }}>{user.Origin3}</p>
+            <p style={{ fontSize: '10px' }} >{user.DateO}</p>
+            <p style={{ fontSize: '10px' }}>{user.Origin}</p>
         </div>
         <div className="informacion flex-grow-1 my-2">
-                <p style={{ fontWeight: 'bold' }}>BOG</p>
-                <p style={{ fontSize: '10px' }} >vier. 29 mar | 19:05</p>
-                <p style={{ fontSize: '10px' }}>Bogota, el dorado, terminal</p>
+                <p style={{ fontWeight: 'bold' }}>{user.Destination3}</p>
+                <p style={{ fontSize: '10px' }} >{user.DateD}</p>
+                <p style={{ fontSize: '10px' }}>{user.Destination}</p>
             </div>
             </div>
 
 
         {/* AQUI SE CREA EL QR */}
-        <div style={{ marginTop: '100px', marginBottom: '100px', display: 'flex', justifyContent: 'center' }}>
+        <div className=" my-2" style={{display: 'flex', justifyContent: 'center'} }>
             <canvas id="canvas"></canvas>
         </div>
 
 
             <span style={{ fontWeight: 'bold' }}>SU TARIFA ES </span>
-            <span style={{ fontWeight: 'bold' }}>Clasic</span>
+            <span style={{ fontWeight: 'bold' }}>{user.Fee}</span>
 
 
             <div className=' flex my-5'>
@@ -97,10 +101,10 @@ const Card = () => {
                         <div className='info-container2'>
                         <div className='info-container'>
                         <span >Reserva: </span>
-                        <span style={{ fontWeight: 'bold' }}>NPI76</span></div>
+                        <span style={{ fontWeight: 'bold' }}>{user.reservationNumber}</span></div>
                         <div className='info-container'>
                         <span >VIAJERO FRECUENTE </span>
-                        <span style={{ fontWeight: 'bold' }}>SI/NO</span></div></div>
+                        <span style={{ fontWeight: 'bold' }}>{user.FrequentTraveler}</span></div></div>
 
                     </div>
             </div>
@@ -115,16 +119,16 @@ const Card = () => {
                         
                         <div className='info-container'>
                         <span >Operado por: </span>
-                        <span style={{ fontWeight: 'bold' }}>Singapur Airlines</span></div>
+                        <span style={{ fontWeight: 'bold' }}>{user.Operator}</span></div>
 
                         <div className='info-container2'>
                         <div className='info-container'>
                         <span >Vendido por </span>
-                        <span style={{ fontWeight: 'bold' }}>xxxx</span>
+                        <span style={{ fontWeight: 'bold' }}>{user.Seller}</span>
                         </div>
                         <div className='info-container'>
                         <span >status</span>
-                        <span style={{ fontWeight: 'bold' }}>xxxx</span>
+                        <span style={{ fontWeight: 'bold' }}>{user.status}</span>
                             </div>
                         </div>
 
