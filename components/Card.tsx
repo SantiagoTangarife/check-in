@@ -13,12 +13,23 @@ const Card = () => {
         const qrText = Object.values(user).join(' - ');
         const size = 200;
         const canvas = document.getElementById('canvas');
-
-        QRCode.toCanvas(canvas,  qrText, {width:size, height:size}, function (error) {
-            if (error) console.error(error)
-            console.log('success!');
-        })
-    }, [])
+        if (canvas instanceof HTMLCanvasElement) {
+            // Establece el tamaño del canvas
+            canvas.width = size;
+            canvas.height = size;
+    
+            // Genera el código QR en el canvas con la nueva dimensión
+            QRCode.toCanvas(canvas, qrText, function (error) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log('Código QR generado con éxito.');
+                }
+            });
+        } else {
+            console.error('Elemento canvas no encontrado en el DOM.');
+        }
+    }, []);
     const user = User[0];
     return (
         <div className='info-container2'>
