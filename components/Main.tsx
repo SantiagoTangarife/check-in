@@ -4,6 +4,8 @@ import { FaPlaneDeparture } from 'react-icons/fa';
 import  TextInput  from "./Input"
 import {match} from "../data/data"
 import DataContact from '@/components/DataContact';
+import { useNavigate } from 'react-router-dom';
+
 
 const Swal = require('sweetalert2')
 
@@ -12,8 +14,9 @@ const Main = () => {
     const [lastName, setLastName] = useState('');
     //const [error, setError] = useState('');
     const [showDataContact, setShowDataContact] = useState(false);
+    const navigate = useNavigate();
 
-    const handleStartCheckIn = (e) => {
+    const handleStartCheckIn = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         // Busca coincidencias en la lista
@@ -23,6 +26,8 @@ const Main = () => {
             // toast.success('¡Coincidencia encontrada!');
             // await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
             setShowDataContact(true); // Mostrar Checking si hay una coincidencia
+            navigate('/contact');
+           
 
         }
         else{
@@ -38,9 +43,7 @@ const Main = () => {
     };
     
     return (
-        <>
-        {!showDataContact ? ( /// Mostrar Main si showChecking es falso
-        <div className="flex flex-col items-center h-screen justify-center ">
+      <div className="flex flex-col items-center h-screen justify-center bg-white px-3  w-full text-black">
           
             <form className="flex flex-col items-center justify-center "
                   onSubmit={handleStartCheckIn}
@@ -75,11 +78,7 @@ const Main = () => {
             </form>
        </div>
 
-    ) : (
-        <DataContact />
-      )}
-    </>
-       
+   
     )
 }
 

@@ -32,7 +32,7 @@ const Card = () => {
     }, []);
     const user = User[0];
     return (
-        <div className='info-container2'>
+        <div className='info-container2 items-center justify-center bg-white px-3  w-full text-black'>
         <div className="card">
             <div className="card-header h2 info-container " style={{display: 'flex', justifyContent: 'center'}}>
                 <span className="font-bold "style={{ marginRight: '20px' }}>{user.Operator}</span>

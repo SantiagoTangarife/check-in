@@ -1,14 +1,19 @@
-import Image from "next/image";
+'use client';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from "../components/Main";
-import Checking from "@/components/DataContact";
-import Card from "../components/Card";
-import DataContact from "../components/DataContact";
+import DataContact from '@/components/DataContact';
+import Card from '@/components/Card';
 
-export default function Home() {
-return (
-  <div className=" bg-white px-3 flex w-full h-full justify-center text-black">
-    <Main/>
-  </div>
-
-);
+const App = () => {
+  return (
+  <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/contact" element={<DataContact />} />
+        <Route path="/pass" element={<Card />} />
+      </Routes>
+    </Router>
+  );
 }
+export default App;

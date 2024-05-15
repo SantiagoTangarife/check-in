@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import TextInput from './Input';
 import Card from './Card';
 import Main from './Main';
+import { useNavigate } from 'react-router-dom';
+
 
 const Swal = require('sweetalert2')
 
@@ -13,7 +15,7 @@ const DataContact = () => {
     const [adress, setAdress] = useState('');
     const [preexistence, setPreexistence] = useState('');
     const [showDataCard, setShowDataCard] = useState(false);
-    
+    const navigate = useNavigate();
 
     const handleValidation = () => {
         if (!nameCompleted || !numberContact || !preexistence && !illness) {
@@ -32,14 +34,14 @@ const DataContact = () => {
     };
 
     const handleCancel = () => {
-        window.location.reload();
+        navigate('/', { replace: true });
+    };
+    const handleSave = () => {
+        navigate('/pass');
     };
     
     return (
-        <>
-         
-        {
-            !showDataCard ? (<div className="flex flex-col justify-center text-black items-center h-full bg-white data-container">
+       <div className="flex flex-col justify-center text-black items-center h-full bg-white data-container">
                 <h1 className="text-3xl font-bold mb-8">Información de contacto</h1>
                 <form style={{
                     paddingRight: '1rem',
@@ -111,18 +113,13 @@ const DataContact = () => {
 
 
                         <div className='flex flex-row justify-center gap-4'>
-                            <button type="submit" className="white-button"  onClick={handleCancel}>Cancelar</button>
-                            <button type="submit" className="blue-button" style={{width: "23%"}} >Guardar</button>
+                            <button type="submit" className="white-button"  onClick={(handleCancel)}>Cancelar</button>
+                            <button type="submit" className="blue-button" style={{width: "23%"}} onClick={(handleSave)} >Guardar</button>
                         </div>
                     </div>
                 </form>
-        </div>) : (
-        <Card />
-      )
-        }
-        </>
+        </div>) 
         
-    );
-};
+                            }
 
 export default DataContact;
