@@ -13,7 +13,7 @@ const Main = () => {
     //const [error, setError] = useState('');
     const [showDataContact, setShowDataContact] = useState(false);
 
-    const handleStartCheckIn = (e) => {
+    const handleStartCheckIn = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         // Busca coincidencias en la lista
