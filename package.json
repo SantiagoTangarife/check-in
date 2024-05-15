@@ -20,7 +20,8 @@
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.23.0",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "sweetalert2": "^11.11.0"
   },
   "devDependencies": {
     "@cfaester/enzyme-adapter-react-18": "^0.8.0",
