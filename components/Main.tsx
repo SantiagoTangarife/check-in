@@ -4,10 +4,8 @@ import { FaPlaneDeparture } from 'react-icons/fa';
 import  TextInput  from "./Input"
 import {match} from "../data/data"
 import DataContact from '@/components/DataContact';
-import { toast, ToastContainer } from 'react-toastify'; // Importa la función toast
-import 'react-toastify/dist/ReactToastify.css'; // Importa el CSS
 
-
+const Swal = require('sweetalert2')
 
 const Main = () => {
     const [reservationNumber, setReservationNumber] = useState('');
@@ -15,29 +13,38 @@ const Main = () => {
     //const [error, setError] = useState('');
     const [showDataContact, setShowDataContact] = useState(false);
 
-    const handleStartCheckIn =async () => {
-        
-        // Busca coincidencias en la lista 
+    const handleStartCheckIn = (e) => {
+        e.preventDefault();
+
+        // Busca coincidencias en la lista
         const matc = match.find(item => item.lastName === lastName && item.reservationNumber === reservationNumber);
 
         if (matc) {
-            
-            toast.success('¡Coincidencia encontrada!');
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
+            // toast.success('¡Coincidencia encontrada!');
+            // await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
             setShowDataContact(true); // Mostrar Checking si hay una coincidencia
-            
+
         }
         else{
-            toast.error('Ups! No se encontró ninguna coincidencia.');
+            Swal.fire({
+                title: "<span>" + "Error!" + "</span>",
+                html: "<span>" + "Ups! Revisa tu código de reserva o tus apellidos" + "</span>",
+                icon: 'error',
+                background: '#fff',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: "#1d9bf0",
+            })
         }
     };
     
     return (
         <>
         {!showDataContact ? ( /// Mostrar Main si showChecking es falso
-        <div className="flex flex-col items-center h-screen justify-center ">  
+        <div className="flex flex-col items-center h-screen justify-center ">
           
-            <form className="flex flex-col items-center justify-center ">
+            <form className="flex flex-col items-center justify-center "
+                  onSubmit={handleStartCheckIn}
+            >
                 <div className="emoji-circular">
                     <FaPlaneDeparture size={80} />
                 </div>
@@ -59,15 +66,15 @@ const Main = () => {
                 value={lastName}
                 typeInput='text'
                 onChange={(e) => setLastName(e.target.value)}
-            />  
+            />
                 <span style={{ fontSize: '10px', fontWeight: 'bold' }}>Ingrese su(s) apellido(s), tal como aparecen registrados en la reserva. </span>
-                </div> 
+                </div>
+
+                <button type="submit" className="blue-button">EMPEZAR CHECK-IN</button>
 
             </form>
-        <button type="submit" className="blue-button"  onClick={handleStartCheckIn}>EMPEZAR CHECK-IN</button>
-       <ToastContainer />
        </div>
-      
+
     ) : (
         <DataContact />
       )}
