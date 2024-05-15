@@ -68,18 +68,40 @@ body {
 }
 
 .blue-button {
-  background-color: blue; 
+  background-color: blue;
   color: white; 
   font-weight: bold; 
   font-size: 16px; 
   padding: 10px 20px; 
   border: none; 
   border-radius: 5px; 
-  cursor: pointer; 
+  cursor: pointer;
+}
+
+.white-button {
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: solid 1px blue;
+  width: 23%;
 }
 
 .blue-button:hover {
   background-color: darkblue; /* Color de fondo más oscuro al pasar el cursor */
+}
+
+.data-container {
+  padding: 43px 24px;
+  box-shadow: 0 2px 12px #1b1b1b26;
+  border-top: solid 3px blue;
+  background-color: #fff;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 8.1rem;
 }
 
 .card {

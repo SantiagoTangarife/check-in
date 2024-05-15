@@ -39,14 +39,16 @@ const DataContact = () => {
         <>
          
         {
-            !showDataCard ? (<div className="flex flex-col justify-center text-black items-center h-screen bg-white">
+            !showDataCard ? (<div className="flex flex-col justify-center text-black items-center h-full bg-white data-container">
                 <h1 className="text-3xl font-bold mb-8">Información de contacto</h1>
-                <form>
-                    <div className='flex flex-col gap-2 w-3/4'>
+                <form style={{
+                    paddingRight: '1rem',
+                    paddingLeft: '1rem',
+                }} onSubmit={handleValidation}>
+                    <div className='flex flex-col gap-2'>
                         <div className='flex flex-col'>
                             <h2 className='font-bold'>Contacto de emergencia</h2>
                             <div className='flex flex-row gap-2'>
-                                <form className="flex-grow bg-white">
                                     <div className="mb-4 relative">
                                         <p className="text-black text-sm mb-2">Nombre completo del contacto de emergencia*</p>
                                         <TextInput required placeholderValue="Nombre Completo"
@@ -55,8 +57,6 @@ const DataContact = () => {
                                             onChange={(e) => setNameCompleted(e.target.value)}
                                         />
                                     </div>
-                                </form>
-                                <form className="flex-grow bg-white">
                                     <div className="mb-4 relative">
                                         <p className="text-black text-sm mb-2">Número de teléfono del contacto de emergencia*</p>
                                         <TextInput required placeholderValue="+00 000 000 000"
@@ -65,13 +65,11 @@ const DataContact = () => {
                                             onChange={(e) => setNumberContact(e.target.value)}
                                         />
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <div className='flex flex-col'>
                             <h2 className='font-bold'>Preexistencia médica</h2>
                             <div className='flex flex-row gap-2'>
-                                <form className="flex-grow bg-white">
                                     <div className="mb-4 relative">
                                         <p className="text-black text-sm mb-2">Preexistencia médica*</p>
                                         <select
@@ -87,8 +85,6 @@ const DataContact = () => {
                                             <option value="no">No</option>
                                         </select>
                                     </div>
-                                </form>
-                                <form className="flex-grow bg-white">
                                     <div className="mb-4 relative">
                                         <p className="text-black text-sm mb-2">¿Cuál?</p>
                                         <TextInput required placeholderValue="Indicar enfermedad"
@@ -97,12 +93,10 @@ const DataContact = () => {
                                             onChange={(e) => setIllness(e.target.value)}
                                         />
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <div className='flex flex-col gap-2'>
                             <h2 className='font-bold'>Dirección de envío de maletas</h2>
-                            <form className="flex-grow bg-white">
                                 <div className="mb-4 relative">
                                     <p className="text-black text-sm mb-2">Dirección de envío de maletas</p>
                                     <TextInput placeholderValue="Direccion de envio de maletas"
@@ -111,13 +105,12 @@ const DataContact = () => {
                                         onChange={(e) => setAdress(e.target.value)}
                                     />
                                 </div>
-                            </form>
                         </div>
 
 
                         <div className='flex flex-row justify-center gap-4'>
-                            <button type="submit" className="blue-button"  onClick={handleCancel}>CANCELAR</button>
-                            <button type="submit" className="blue-button" onClick={handleValidation}>GUARDAR</button>
+                            <button type="submit" className="white-button"  onClick={handleCancel}>Cancelar</button>
+                            <button type="submit" className="blue-button" style={{width: "23%"}} >Guardar</button>
                         </div>
                     </div>
                 </form>
