@@ -16,7 +16,7 @@ const DataContact = () => {
     
 
     const handleValidation = () => {
-        if (!nameCompleted || !numberContact || (preexistence === 'si' && !illness)) {
+        if (!nameCompleted || !numberContact || !preexistence && !illness) {
             Swal.fire({
                 title: "<span>" + "Error!" + "</span>",
                 html: "<span>" + "Por favor, complete todos los campos obligatorios." + "</span>",
