@@ -17,14 +17,14 @@ const DataContact = () => {
 
     const handleValidation = () => {
         if (!nameCompleted || !numberContact || (preexistence === 'si' && !illness)) {
-            /* Swal.fire({
+            Swal.fire({
                 title: "<span>" + "Error!" + "</span>",
                 html: "<span>" + "Por favor, complete todos los campos obligatorios." + "</span>",
                 icon: 'error',
                 background: '#fff',
                 confirmButtonText: 'Ok',
                 confirmButtonColor: "#1d9bf0",
-            }) */
+            })
             return;
         } else {
             setShowDataCard(true)
@@ -85,14 +85,16 @@ const DataContact = () => {
                                             <option value="no">No</option>
                                         </select>
                                     </div>
+                                {preexistence === 'si' &&
                                     <div className="mb-4 relative">
                                         <p className="text-black text-sm mb-2">¿Cuál?</p>
                                         <TextInput required placeholderValue="Indicar enfermedad"
-                                            value={illness}
-                                            typeInput='text'
-                                            onChange={(e) => setIllness(e.target.value)}
+                                                   value={illness}
+                                                   typeInput='text'
+                                                   onChange={(e) => setIllness(e.target.value)}
                                         />
                                     </div>
+                                }
                             </div>
                         </div>
                         <div className='flex flex-col gap-2'>
@@ -100,7 +102,7 @@ const DataContact = () => {
                                 <div className="mb-4 relative">
                                     <p className="text-black text-sm mb-2">Dirección de envío de maletas</p>
                                     <TextInput placeholderValue="Direccion de envio de maletas"
-                                        value={adress}
+                                        value={adress} required
                                         typeInput='text'
                                         onChange={(e) => setAdress(e.target.value)}
                                     />
