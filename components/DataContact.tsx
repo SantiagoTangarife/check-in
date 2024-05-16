@@ -42,8 +42,9 @@ const DataContact = () => {
     };
     
     return (
-       <div className="flex flex-col justify-center text-black items-center h-full bg-white data-container">
-                <h1 className="text-3xl font-bold mb-8">Información de contacto</h1>
+       <div className="flex flex-col justify-center text-black items-center h-full bg-white">
+           <div className="data-container">
+                <h1 className="text-3xl font-bold mb-8 text-center">Información de contacto</h1>
                 <form style={{
                     paddingRight: '1rem',
                     paddingLeft: '1rem',
@@ -119,6 +120,7 @@ const DataContact = () => {
                         </div>
                     </div>
                 </form>
+           </div>
         </div>) 
         
                             }
