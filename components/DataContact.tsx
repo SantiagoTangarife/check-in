@@ -1,10 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import TextInput from './Input';
-import Card from './Card';
-import Main from './Main';
 import { useNavigate } from 'react-router-dom';
-
 
 const Swal = require('sweetalert2')
 
@@ -14,7 +11,6 @@ const DataContact = () => {
     const [illness, setIllness] = useState('');
     const [adress, setAdress] = useState('');
     const [preexistence, setPreexistence] = useState('');
-    const [showDataCard, setShowDataCard] = useState(false);
     const navigate = useNavigate();
 
     const handleValidation = () => {
@@ -29,15 +25,20 @@ const DataContact = () => {
             })
             return;
         } else {
-            setShowDataCard(true)
+            Swal.fire({
+                title: "<span>" + "Registro guardado con exito!" + "</span>",
+                html: "<span>" + "Hemos guardado tus datos con exito" + "</span>",
+                icon: 'success',
+                background: '#fff',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: "#1d9bf0",
+            })
+            navigate('/pass');
         }
     };
 
     const handleCancel = () => {
         navigate('/', { replace: true });
-    };
-    const handleSave = () => {
-        navigate('/pass');
     };
     
     return (
@@ -114,7 +115,7 @@ const DataContact = () => {
 
                         <div className='flex flex-row justify-center gap-4'>
                             <button type="submit" className="white-button"  onClick={(handleCancel)}>Cancelar</button>
-                            <button type="submit" className="blue-button" style={{width: "23%"}} onClick={(handleSave)} >Guardar</button>
+                            <button type="submit" className="blue-button" style={{width: "23%"}}>Guardar</button>
                         </div>
                     </div>
                 </form>
