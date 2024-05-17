@@ -26,9 +26,8 @@ const Card = () => {
                     console.log('Código QR generado con éxito.');
                 }
         });
-
+    }
         if (typeof window !== 'undefined') {
-            generateQRCode();
         }
      }, []);
     const user = User[0];
