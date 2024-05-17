@@ -30,7 +30,7 @@ const Card = () => {
         if (typeof window !== 'undefined') {
             generateQRCode();
         }
-    }, []);
+    } []);
     const user = User[0];
     return (
         <div className='info-container2 items-center justify-center bg-white px-3  w-full text-black'>
