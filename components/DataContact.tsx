@@ -13,7 +13,8 @@ const DataContact = () => {
     const [preexistence, setPreexistence] = useState('');
     const navigate = useNavigate();
 
-    const handleValidation = () => {
+    const handleValidation = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if (!nameCompleted || !numberContact || !preexistence && !illness) {
             Swal.fire({
                 title: "<span>" + "Error!" + "</span>",
@@ -115,7 +116,7 @@ const DataContact = () => {
 
 
                         <div className='flex flex-row justify-center gap-4'>
-                            <button type="submit" className="white-button"  onClick={(handleCancel)}>Cancelar</button>
+                            <button type="button" className="white-button"  onClick={(handleCancel)}>Cancelar</button>
                             <button type="submit" className="blue-button" style={{width: "23%"}}>Guardar</button>
                         </div>
                     </div>
