@@ -25,7 +25,7 @@ const Card = () => {
                 } else {
                     console.log('Código QR generado con éxito.');
                 }
-        };
+        });
 
         if (typeof window !== 'undefined') {
             generateQRCode();
