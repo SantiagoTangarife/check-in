@@ -73,6 +73,7 @@ const DataContact = () => {
                                     <div className="mb-4 relative">
                                         <p className="text-black text-sm mb-2">Preexistencia médica*</p>
                                         <select
+                                            data-testid="preexistencia"
                                             id="preexistencia"
                                             name="preexistencia"
                                             className="w-[400px] py-2 px-3 border-b-2 text-gray-600 border-gray-300 focus:border-blue-500 outline-none"
@@ -101,7 +102,7 @@ const DataContact = () => {
                             <h2 className='font-bold'>Dirección de envío de maletas</h2>
                                 <div className="mb-4 relative">
                                     <p className="text-black text-sm mb-2">Dirección de envío de maletas</p>
-                                    <TextInput placeholderValue="Direccion de envio de maletas"
+                                    <TextInput placeholderValue="Dirección de envio de maletas"
                                         value={adress} required
                                         typeInput='text'
                                         onChange={(e) => setAdress(e.target.value)}
