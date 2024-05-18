@@ -25,15 +25,14 @@ const Card = () => {
                 } else {
                     console.log('Código QR generado con éxito.');
                 }
-        });
-
-        if (typeof window !== 'undefined') {
-            generateQRCode();
+            });
+        } else {
+            console.error('Elemento canvas no encontrado en el DOM.');
         }
-     }, []);
+    }, []);
     const user = User[0];
     return (
-        <div className='info-container2 items-center justify-center bg-white px-3  w-full text-black'>
+        <div className='info-container2'>
         <div className="card">
             <div className="card-header h2 info-container " style={{display: 'flex', justifyContent: 'center'}}>
                 <span className="font-bold "style={{ marginRight: '20px' }}>{user.Operator}</span>
