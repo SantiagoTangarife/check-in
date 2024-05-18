@@ -22,14 +22,14 @@ describe('Main', () => {
 
   it('handles reservation input value change', () => {
     render(<Main />);
-    const reservationInput = screen.getByPlaceholderText('Código de reserva');
+    const reservationInput = screen.getByPlaceholderText('Código de reserva') as HTMLInputElement;
     fireEvent.change(reservationInput, { target: { value: '123456' } });
     expect(reservationInput.value).toBe('123456');
   });
 
   it('handles last name input value change', () => {
     render(<Main />);
-    const lastNameInput = screen.getByPlaceholderText('Apellido(s)');
+    const lastNameInput = screen.getByPlaceholderText('Apellido(s)') as HTMLInputElement;
     fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
     expect(lastNameInput.value).toBe('Doe');
   });
