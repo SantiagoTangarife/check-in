@@ -25,9 +25,12 @@ const Card = () => {
                 } else {
                     console.log('Código QR generado con éxito.');
                 }
+
             });
         } else {
             console.error('Elemento canvas no encontrado en el DOM.');
+
+       
         }
     }, []);
     const user = User[0];
