@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import TextInput from './Input';
 import Card from './Card';
-import Main from './Main';
+import {createDataContact} from "@/api/Check-in/createDataContact";
 
 const Swal = require('sweetalert2')
 
@@ -10,12 +10,14 @@ const DataContact = () => {
     const [nameCompleted, setNameCompleted] = useState('');
     const [numberContact, setNumberContact] = useState('');
     const [illness, setIllness] = useState('');
-    const [adress, setAdress] = useState('');
+    const [address, setAddress] = useState('');
     const [preexistence, setPreexistence] = useState('');
     const [showDataCard, setShowDataCard] = useState(false);
-    
 
-    const handleValidation = () => {
+
+    const handleValidation = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         if (!nameCompleted || !numberContact || !preexistence && !illness) {
             Swal.fire({
                 title: "<span>" + "Error!" + "</span>",
@@ -27,7 +29,38 @@ const DataContact = () => {
             })
             return;
         } else {
-            setShowDataCard(true)
+            let cardContact ={
+                nameCompleted,
+                numberContact,
+                preexistence,
+                illness,
+                address,
+            }
+
+            const response = await createDataContact(cardContact);
+            if(response){
+                const {responseMessage, responseStatus} = response;
+
+                if (responseStatus === 201) {
+                    Swal.fire({
+                        title: "<span>" + responseMessage + "</span>",
+                        icon: 'success',
+                        background: '#fff',
+                        confirmButtonText: 'Ok',
+                        confirmButtonColor: "#1d9bf0",
+                    })
+                    setShowDataCard(true)
+                } else {
+                    Swal.fire({
+                        title: "<span style='color:white'>" + "Error!" + "</span>",
+                        html: "<span style='color:white; z-index:1400'>" + responseMessage + "</span>",
+                        icon: 'error',
+                        background: '#2c2d31',
+                        confirmButtonText: 'Ok',
+                        confirmButtonColor: "#0f4198",
+                    });
+                }
+            }
         }
     };
 
@@ -103,9 +136,9 @@ const DataContact = () => {
                                 <div className="mb-4 relative">
                                     <p className="text-black text-sm mb-2">Dirección de envío de maletas</p>
                                     <TextInput placeholderValue="Dirección de envio de maletas"
-                                        value={adress} required
+                                        value={address} required
                                         typeInput='text'
-                                        onChange={(e) => setAdress(e.target.value)}
+                                        onChange={(e) => setAddress(e.target.value)}
                                     />
                                 </div>
                         </div>
