@@ -1,5 +1,5 @@
 const Settings = {
-    main: "https://check--itglobers.myvtex.com/_v/chekin/",
+    main: "https://669f3c18-edc5-4bf1-b6a8-726f40806610.mock.pstmn.io/checkin/",
     checkin: "apellido/{0}/codigo/{1}",
 };
 
