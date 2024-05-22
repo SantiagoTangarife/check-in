@@ -20,10 +20,10 @@ const Main = () => {
         const response = await getReservation(lastName, reservationNumber);
 
         // Busca coincidencias en la lista
-        // const matc = match.find(item => item.lastName === lastName && item.reservationNumber === reservationNumber);
+        const matc = match.find(item => item.lastName === lastName && item.reservationNumber === reservationNumber);
 
         console.log(response);
-        if (response) {
+        if (matc) {
             // toast.success('¡Coincidencia encontrada!');
             // await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
             setShowDataContact(true); // Mostrar Checking si hay una coincidencia
