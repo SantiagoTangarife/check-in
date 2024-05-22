@@ -4,28 +4,31 @@ import { FaPlaneDeparture } from 'react-icons/fa';
 import  TextInput  from "./Input"
 import {match} from "../data/data"
 import DataContact from '@/components/DataContact';
+import {getReservation} from "@/api/Check-in/check-in";
 
 const Swal = require('sweetalert2')
 
 const Main = () => {
     const [reservationNumber, setReservationNumber] = useState('');
     const [lastName, setLastName] = useState('');
-    //const [error, setError] = useState('');
     const [showDataContact, setShowDataContact] = useState(false);
 
-    const handleStartCheckIn = (e:React.FormEvent<HTMLFormElement>) => {
+
+    const handleStartCheckIn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Busca coincidencias en la lista
-        const matc = match.find(item => item.lastName === lastName && item.reservationNumber === reservationNumber);
+        const response = await getReservation(lastName, reservationNumber);
 
-        if (matc) {
+        // Busca coincidencias en la lista
+        // const matc = match.find(item => item.lastName === lastName && item.reservationNumber === reservationNumber);
+
+        console.log(response);
+        if (response) {
             // toast.success('¡Coincidencia encontrada!');
             // await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
             setShowDataContact(true); // Mostrar Checking si hay una coincidencia
 
-        }
-        else{
+        } else {
             Swal.fire({
                 title: "<span>" + "Error!" + "</span>",
                 html: "<span>" + "Ups! Revisa tu código de reserva o tus apellidos" + "</span>",
