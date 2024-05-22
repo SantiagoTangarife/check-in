@@ -18,6 +18,6 @@ export const getReservation = async (lastName: string, reservationNumber: string
             };
         }
     } catch (error) {
-        return console.log(error);
+        console.log(error);
     }
 };
