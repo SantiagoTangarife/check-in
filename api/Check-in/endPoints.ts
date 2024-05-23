@@ -6,13 +6,23 @@ const Settings = {
 };
 
 export function formatApiUrl(...args: (string | number)[]): string {
-    let s = args[0].toString();
-    for (let i = 0; i < args.length - 1; i += 1) {
-        const reg = new RegExp("\\{" + i + "\\}", "gm");
-        s = s.replace(reg, args[i + 1].toString());
+    if (typeof args[0] !== 'string') {
+        throw new Error('The first argument must be a string.');
     }
+
+    let s = args[0];
+
+    for (let i = 0; i < args.length - 1; i++) {
+        const placeholder = `{${i}}`;
+        // Utiliza un bucle para reemplazar todas las ocurrencias del marcador de posición
+        while (s.includes(placeholder)) {
+            s = s.replace(placeholder, args[i + 1].toString());
+        }
+    }
+
     return s;
 }
+
 
 export function parseApiUrl(endpoint: keyof typeof Settings, ...args: (string | number)[]): string {
     const localEnd = formatApiUrl(Settings[endpoint], ...args);
