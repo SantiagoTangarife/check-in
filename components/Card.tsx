@@ -1,19 +1,47 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import QRCode from 'qrcode';
 import { FaPlaneDeparture } from 'react-icons/fa';
 import { FaBriefcase, FaSuitcase } from 'react-icons/fa';
-import {User} from "../data/dataCard"
+import {User} from "@/data/dataCard";
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
+import {getCardQr} from "@/api/Check-in/cardQR";
 
+interface CardProps {
+    lastName: string;
+    reservationNumber: string;
+}
 
-const Card = () => {
+const Card: React.FC<CardProps> = ({ lastName, reservationNumber }) => {
+
+    const [lastNameCard, setLastName] = useState("");
+    const [reservationNumberCard, setReservationNumber] = useState("");
+    const [name, setName] = useState("");
+    const [TimeRomm, setTimeRomm] = useState("");
+    const [Group, setGroup] = useState("");
+    const [Seat, setSeat] = useState("");
+    const [Origin3, setOrigin3] = useState("");
+    const [DateO, setDateO] = useState("");
+    const [Origin, setOrigin] = useState("");
+    const [Destination3, setDestination3] = useState("");
+    const [DateD, setDateD] = useState("");
+    const [Destination, setDestination] = useState("");
+    const [Operator, setOperator] = useState("");
+    const [Seller, setSeller] = useState("");
+    const [FrequentTraveler, setFrequentTraveler] = useState("");
+    const [Fee, setFee] = useState("");
+    const [status, setStatus] = useState("");
 
     useEffect(() => {
+
         const user = User[0];
+
+        fetchData(lastName, reservationNumber);
+
+
         const qrText = Object.values(user).join(' - ');
         const size = 200;
         const canvas = document.getElementById('canvas');
@@ -36,8 +64,36 @@ const Card = () => {
 
        
         }
-    }, []);
-    const user = User[0];
+    }, [lastName, reservationNumber]);
+
+    const fetchData = async (lastName: string, reservationNumber: string) => {
+        try {
+            const response = await getCardQr(lastName, reservationNumber);
+            if (response) {
+                const User = response.User.User[0];
+                setLastName(User.lastName);
+                setReservationNumber(User.reservationNumber);
+                setName(User.name);
+                setTimeRomm(User.TimeRomm);
+                setGroup(User.Group);
+                setSeat(User.Seat);
+                setOrigin3(User.Origin3);
+                setDateO(User.DateO);
+                setOrigin(User.Origin);
+                setDestination3(User.Destination3);
+                setDateD(User.DateD);
+                setDestination(User.Destination);
+                setOperator(User.Operator);
+                setSeller(User.Seller);
+                setFrequentTraveler(User.FrequentTraveler);
+                setFee(User.Fee);
+                setStatus(User.status);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     const cardRef = useRef(null);
 
@@ -71,14 +127,14 @@ const Card = () => {
 
                 <div className="card"  ref={cardRef}>
                     <div className="card-header h2 info-container " style={{display: 'flex', justifyContent: 'center'}}>
-                        <span className="font-bold " style={{marginRight: '20px'}}>{user.Operator}</span>
+                        <span className="font-bold " style={{marginRight: '20px'}}>{Operator}</span>
                         <span><FaPlaneDeparture size={50}/></span>
 
                     </div>
                     <div className="card-body">
                         <div className="info-container2 my-4">
                             <span>Nombre del pasajero</span>
-                            <span>{user.name} {user.lastName}</span>
+                            <span>{name} {lastNameCard}</span>
                         </div>
 
 
@@ -89,9 +145,9 @@ const Card = () => {
                                 <span>Asiento</span>
                             </div>
                             <div className="fila2 text-center">
-                                <span>{user.TimeRomm}</span>
-                                <span>{user.Group}</span>
-                                <span>{user.Seat}</span>
+                                <span>{TimeRomm}</span>
+                                <span>{Group}</span>
+                                <span>{Seat}</span>
                             </div>
                         </div>
 
@@ -117,14 +173,14 @@ const Card = () => {
                         </div>
                         <div className=' flex justify-between'>
                             <div className="informacion flex-grow-1">
-                                <p style={{fontWeight: 'bold'}}>{user.Origin3}</p>
-                                <p style={{fontSize: '10px'}}>{user.DateO}</p>
-                                <p style={{fontSize: '10px'}}>{user.Origin}</p>
+                                <p style={{fontWeight: 'bold'}}>{Origin3}</p>
+                                <p style={{fontSize: '10px'}}>{DateO}</p>
+                                <p style={{fontSize: '10px'}}>{Origin}</p>
                             </div>
                             <div className="informacion flex-grow-1 my-2">
-                                <p style={{fontWeight: 'bold'}}>{user.Destination3}</p>
-                                <p style={{fontSize: '10px'}}>{user.DateD}</p>
-                                <p style={{fontSize: '10px'}}>{user.Destination}</p>
+                                <p style={{fontWeight: 'bold'}}>{Destination3}</p>
+                                <p style={{fontSize: '10px'}}>{DateD}</p>
+                                <p style={{fontSize: '10px'}}>{Destination}</p>
                             </div>
                         </div>
 
@@ -136,7 +192,7 @@ const Card = () => {
 
 
                         <span style={{fontWeight: 'bold'}}>SU TARIFA ES </span>
-                        <span style={{fontWeight: 'bold'}}>{user.Fee}</span>
+                        <span style={{fontWeight: 'bold'}}>{Fee}</span>
 
 
                         <div className=' flex my-5'>
@@ -149,10 +205,10 @@ const Card = () => {
                                 <div className='info-container2'>
                                     <div className='info-container'>
                                         <span>Reserva: </span>
-                                        <span style={{fontWeight: 'bold'}}>{user.reservationNumber}</span></div>
+                                        <span style={{fontWeight: 'bold'}}>{reservationNumberCard}</span></div>
                                     <div className='info-container'>
                                         <span>VIAJERO FRECUENTE </span>
-                                        <span style={{fontWeight: 'bold'}}>{user.FrequentTraveler}</span></div>
+                                        <span style={{fontWeight: 'bold'}}>{FrequentTraveler}</span></div>
                                 </div>
 
                             </div>
@@ -168,16 +224,16 @@ const Card = () => {
 
                                 <div className='info-container'>
                                     <span>Operado por: </span>
-                                    <span style={{fontWeight: 'bold'}}>{user.Operator}</span></div>
+                                    <span style={{fontWeight: 'bold'}}>{Operator}</span></div>
 
                                 <div className='info-container2'>
                                     <div className='info-container'>
                                         <span>Vendido por </span>
-                                        <span style={{fontWeight: 'bold'}}>{user.Seller}</span>
+                                        <span style={{fontWeight: 'bold'}}>{Seller}</span>
                                     </div>
                                     <div className='info-container'>
                                         <span>status</span>
-                                        <span style={{fontWeight: 'bold'}}>{user.status}</span>
+                                        <span style={{fontWeight: 'bold'}}>{status}</span>
                                     </div>
                                 </div>
 

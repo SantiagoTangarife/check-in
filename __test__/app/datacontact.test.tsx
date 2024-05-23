@@ -4,7 +4,7 @@ import DataContact from '@/components/DataContact';
 
 describe('DataContact', () => {
     it('renders correctly', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         expect(screen.getByText('Información de contacto')).toBeInTheDocument();
         expect(screen.getByText('Contacto de emergencia')).toBeInTheDocument();
         expect(screen.getByText('Preexistencia médica')).toBeInTheDocument();
@@ -12,28 +12,28 @@ describe('DataContact', () => {
     });
 
     it('handles name input value change', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         const nameInput = screen.getByPlaceholderText('Nombre Completo') as HTMLInputElement;
         fireEvent.change(nameInput, { target: { value: 'John Doe' } });
         expect(nameInput.value).toBe('John Doe');
     });
 
     it('handles phone number input value change', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         const phoneInput = screen.getByPlaceholderText('+00 000 000 000') as HTMLInputElement;
         fireEvent.change(phoneInput, { target: { value: '1234567890' } });
         expect(phoneInput.value).toBe('1234567890');
     });
 
     it('handles medical preexistence select change', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         const preexistenceSelect = screen.getByTestId('preexistencia') as HTMLSelectElement;
         fireEvent.change(preexistenceSelect, { target: { value: 'si' } });
         expect(preexistenceSelect.value).toBe('si');
     });
 
     it('handles illness input value change when preexistence is "si"', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         const preexistenceSelect = screen.getByTestId('preexistencia') as HTMLSelectElement;
         fireEvent.change(preexistenceSelect, { target: { value: 'si' } });
         const illnessInput = screen.getByPlaceholderText('Indicar enfermedad') as HTMLInputElement;
@@ -42,14 +42,14 @@ describe('DataContact', () => {
     });
 
     it('handles address input value change', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         const addressInput = screen.getByPlaceholderText('Dirección de envio de maletas') as HTMLInputElement;
         fireEvent.change(addressInput, { target: { value: '123 Main St' } });
         expect(addressInput.value).toBe('123 Main St');
     });
 
     it('renders Cancel and Save buttons', () => {
-        render(<DataContact />);
+        render(<DataContact lastName="Doe" reservationNumber="123456" />);
         expect(screen.getByText('Cancelar')).toBeInTheDocument();
         expect(screen.getByText('Guardar')).toBeInTheDocument();
     });

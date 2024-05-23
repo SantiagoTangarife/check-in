@@ -79,8 +79,7 @@ const Main = () => {
        </div>
 
     ) : (
-        <DataContact />
-      )}
+            <DataContact lastName={lastName} reservationNumber={reservationNumber} />      )}
     </>
        
     )
